@@ -12,4 +12,8 @@ export class GreetingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClick(){
+    this.title = 'modified';
+  }
+
 }
