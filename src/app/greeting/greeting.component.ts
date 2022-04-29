@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-greeting',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./greeting.component.css']
 })
 export class GreetingComponent implements OnInit {
-  title = 'Hello'
-  constructor() { }
+  title = 'Hello';
+  users:string[] = [];
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.users = this.userService.getUsers();
   }
 
   onClick(){

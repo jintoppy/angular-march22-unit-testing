@@ -2,10 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GreetingComponent } from './greeting.component';
 import { By } from '@angular/platform-browser';
+import { UserService } from '../user.service';
 
 describe('GreetingComponent', () => {
   let component: GreetingComponent;
   let fixture: ComponentFixture<GreetingComponent>;
+  let service: UserService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,6 +17,8 @@ describe('GreetingComponent', () => {
   });
 
   beforeEach(() => {
+    service = TestBed.inject(UserService);
+    spyOn(service, 'getUsers').and.returnValue(['d', 'f']);
     fixture = TestBed.createComponent(GreetingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -42,6 +46,12 @@ describe('GreetingComponent', () => {
     expect(component.title).toBe('modified');
     const h2El = fixture.nativeElement.querySelector('#myHeader') as HTMLHeadingElement;
     expect(h2El.innerText).toBe('MODIFIED');
+  });
+
+  it('should display users', () => {    
+    expect(component.users).toEqual(['d', 'f']);
+    const liEls = fixture.nativeElement.querySelectorAll('li');
+    expect(liEls.length).toBe(2);
   });
 
 });
