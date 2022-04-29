@@ -7,8 +7,8 @@ export class UserService {
   private _users = ['a', 'b'];
   constructor() { }
 
-  getUsers():string[]{
-    return [];
+  getUsers(){
+    return this._users;
   }
 
 }
