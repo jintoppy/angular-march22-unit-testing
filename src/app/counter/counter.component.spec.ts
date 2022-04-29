@@ -19,7 +19,17 @@ describe('CounterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should increment', () => {
+    expect(component.counter).toBe(0);
+    const h3El = fixture.nativeElement.querySelector('h3') as HTMLHeadingElement;
+    const buttonEl = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+    expect(h3El.textContent).toBe('Clicked 0 times');
+
+    // component.increment();
+    buttonEl.click();
+    fixture.detectChanges();
+
+    expect(component.counter).toBe(1);
+    expect(h3El.textContent).toBe('Clicked 1 times');
   });
 });
